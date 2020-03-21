@@ -1,0 +1,5 @@
+rootProject.name = 'inventory-core'
+include ':adapters:persistence'
+include ':application'
+include 'common'
+

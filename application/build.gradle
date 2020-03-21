@@ -1,0 +1,19 @@
+group 'br.com.inventory.application'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':common')
+}
+
+jar{
+    manifest{
+        attributes('Class-Path': configurations.compile.collect{it.name()}.join(' '),
+                'Implementation-Title' : project.name,
+                'Implementation-Version' : project.version)
+    }
+}

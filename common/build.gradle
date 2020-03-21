@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group 'br.com.inventory.common'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+   implementation 'org.springframework:spring-context:5.2.4.RELEASE'
+   implementation 'javax.validation:validation-api:2.0.1.Final'
+}
+
+
+
+jar{
+    manifest{
+        attributes('Class-Path': configurations.compile.collect{it.name()}.join(' '),
+                'Implementation-Title' : project.name,
+                'Implementation-Version' : project.version)
+    }
+}
+

@@ -1,0 +1,87 @@
+apply plugin: 'java'
+apply plugin: 'java-library'
+group 'br.com.inventory'
+version '1.0.0-SNAPSHOT'
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'jacoco'
+    sourceCompatibility = 11
+    targetCompatibility = 11
+
+    buildscript{
+        repositories {
+            mavenCentral()
+        }
+    }
+
+    jacoco {
+        toolVersion = '0.8.5'
+    }
+
+}
+subprojects {
+    apply plugin : 'java'
+    apply plugin: 'java-library'
+    version '1.0.0-SNAPSHOT'
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.12'
+        annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+        testCompileOnly 'org.projectlombok:lombok:1.18.12'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    }
+
+    jacocoTestReport {
+        reports {
+            html.enabled = true
+            xml.enabled = true
+            csv.enabled = false
+        }
+    }
+
+    check.dependsOn jacocoTestReport
+    
+}
+
+
+task jacocoRootReport(type: JacocoReport) {
+    dependsOn = subprojects.test
+    getAdditionalSourceDirs().setFrom(files(subprojects.sourceSets.main.allSource.srcDirs))
+    getSourceDirectories().setFrom(files(subprojects.sourceSets.main.allSource.srcDirs))
+    getClassDirectories().setFrom(files(subprojects.sourceSets.main.output))
+    getExecutionData().setFrom(files(subprojects.jacocoTestReport.executionData))
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        csv.enabled = false
+    }
+    onlyIf = {
+        true
+    }
+    doFirst {
+        getExecutionData().setFrom(files(executionData.findAll {
+            it.exists()
+        }))
+    }
+}
+
+jar{
+    dependsOn subprojects.assemble
+    subprojects.each { subproject ->
+        from subproject.configurations.archives.allArtifacts.files.collect { zipTree(it) }
+        
+    }
+    manifest{
+        attributes('Class-Path': configurations.compile.collect{it.name()}.join(' '),
+                   'Implementation-Title' : project.name,
+                   'Implementation-Version' : project.version)
+    }
+    
+}
+
