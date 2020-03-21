@@ -16,13 +16,22 @@ dependencies {
    implementation 'javax.validation:validation-api:2.0.1.Final'
 }
 
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
 
 
-jar{
+jar {
     manifest{
         attributes('Class-Path': configurations.compile.collect{it.name()}.join(' '),
                 'Implementation-Title' : project.name,
                 'Implementation-Version' : project.version)
     }
+    from sourceSets.main.output
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }
+                .collect { zipTree(it) }
+    }
 }
-
