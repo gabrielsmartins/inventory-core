@@ -10,8 +10,8 @@ import javax.persistence.Converter;
 public class ProductTypeDataEnumConverter implements AttributeConverter<ProductTypeDataEnum,Integer> {
 
     @Override
-    public Integer convertToDatabaseColumn(ProductTypeDataEnum attribute) {
-        return ProductTypeDataEnum.getCode();
+    public Integer convertToDatabaseColumn(ProductTypeDataEnum productTypeDataEnum) {
+        return productTypeDataEnum.getCode();
     }
 
     @Override

@@ -38,9 +38,10 @@ public enum ProductTypeDataEnum {
         return null;
     }
 
-    public static Integer getCode() {
-        return getCode();
+    public Integer getCode() {
+        return code;
     }
+
 
     public ProductTypeEnum getProductTypeEnum() {
         return productTypeEnum;
