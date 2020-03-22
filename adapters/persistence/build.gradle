@@ -48,4 +48,3 @@ jar {
                 .collect { zipTree(it) }
     }
 }
-

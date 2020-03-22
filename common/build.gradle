@@ -23,15 +23,15 @@ configurations {
 
 
 jar {
-    manifest{
-        attributes('Class-Path': configurations.compile.collect{it.name()}.join(' '),
-                'Implementation-Title' : project.name,
-                'Implementation-Version' : project.version)
-    }
-    from sourceSets.main.output
-    dependsOn configurations.runtimeClasspath
-    from {
-        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }
-                .collect { zipTree(it) }
-    }
+	manifest{
+		attributes('Class-Path': configurations.compile.collect{it.name()}.join(' '),
+				'Implementation-Title' : project.name,
+				'Implementation-Version' : project.version)
+	}
+	from sourceSets.main.output
+	dependsOn configurations.runtimeClasspath
+	from {
+		configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }
+				.collect { zipTree(it) }
+	}
 }
