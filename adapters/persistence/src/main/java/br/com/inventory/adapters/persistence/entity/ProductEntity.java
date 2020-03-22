@@ -7,15 +7,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 
+@Table(name = "Product")
+@Entity
 @ToString
 public class ProductEntity {
 
     @Getter
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
