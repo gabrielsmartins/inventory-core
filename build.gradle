@@ -1,11 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'java-library'
-group 'br.com.inventory'
+group 'br.com.inventory.shared'
 version '1.0.0-SNAPSHOT'
 
 allprojects {
     apply plugin: 'java'
-    apply plugin: 'java-library'
     apply plugin: 'jacoco'
     sourceCompatibility = 11
     targetCompatibility = 11
