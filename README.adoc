@@ -19,3 +19,7 @@ link:https://github.com/gabrielsmartins/inventory-web[Inventory Web]
 
 link:https://github.com/gabrielsmartins/inventory-messaging[Inventory Messaging]
 
+
+== Spring Cloud Stream Kafka
+
+See docs here : link:https://cloud.spring.io/spring-cloud-stream-binder-kafka/spring-cloud-stream-binder-kafka.html[Spring Cloud Stream Kafka Documentation]
