@@ -96,7 +96,7 @@ public class OrderEntity  implements Serializable {
         private BigDecimal amount;
 
         @ToString
-        @RequiredArgsConstructor
+        @AllArgsConstructor
         @Embeddable
         public static class OrderItemEntityId implements Serializable{
 
@@ -104,7 +104,7 @@ public class OrderEntity  implements Serializable {
 
             @ManyToOne(fetch = FetchType.LAZY)
             @JoinColumn(name = "order_id", referencedColumnName = "order_id")
-            private final OrderEntity order;
+            private OrderEntity order;
         }
 
     }
@@ -122,24 +122,25 @@ public class OrderEntity  implements Serializable {
         @EmbeddedId
         private OrderLogEntityId orderLogEntityId;
 
-        @Column(name = "status")
-        @Convert(converter = StatusOrderDataEnumConverter.class)
-        private StatusOrderDataEnum status;
 
-        @RequiredArgsConstructor
         @ToString
         @Embeddable
         @Getter
+        @AllArgsConstructor
         public static class OrderLogEntityId implements Serializable{
 
             private static final long serialVersionUID = 1L;
 
             @ManyToOne(fetch = FetchType.LAZY)
             @JoinColumn(name = "order_id", referencedColumnName = "order_id")
-            private final OrderEntity order;
+            private OrderEntity order;
+
+            @Column(name = "status")
+            @Convert(converter = StatusOrderDataEnumConverter.class)
+            private StatusOrderDataEnum status;
 
             @Column(name = "date_time")
-            private final LocalDateTime dateTime;;
+            private LocalDateTime dateTime;;
         }
 
     }

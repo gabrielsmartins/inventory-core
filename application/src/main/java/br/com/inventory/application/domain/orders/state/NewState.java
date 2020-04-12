@@ -1,9 +1,12 @@
 package br.com.inventory.application.domain.orders.state;
 
 import br.com.inventory.application.domain.orders.Order;
+import br.com.inventory.application.enums.StatusOrderEnum;
 import br.com.inventory.application.exception.IlegalOrderStateException;
 
 public class NewState extends OrderState {
+
+    private final StatusOrderEnum status = StatusOrderEnum.NEW;
 
     public NewState(Order order) {
         super(order);

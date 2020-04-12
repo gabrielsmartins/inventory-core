@@ -13,16 +13,16 @@ public class OrderLogPersistenceMapper {
     public Order.OrderLog mapToDomain(Order order, OrderEntity.OrderLogEntity orderLogEntity) {
         var orderLogEntityId = orderLogEntity.getOrderLogEntityId();
         LocalDateTime dateTime =  orderLogEntityId.getDateTime();
-        StatusOrderDataEnum status = orderLogEntity.getStatus();
+        StatusOrderDataEnum status = orderLogEntityId.getStatus();
         var orderLog = new Order.OrderLog(order, status.getStatusOrderEnum(),dateTime);
         return orderLog;
     }
 
     public OrderEntity.OrderLogEntity mapToEntity(OrderEntity orderEntity, Order.OrderLog orderLog) {
         LocalDateTime dateTime = orderEntity.getDateTime();
-        var orderLogEntityId = new OrderEntity.OrderLogEntity.OrderLogEntityId(orderEntity, dateTime);
         StatusOrderDataEnum statusOrderDataEnum = StatusOrderDataEnum.valueOf(orderLog.getStatus());
-        var orderLogEntity = new OrderEntity.OrderLogEntity(orderLogEntityId,statusOrderDataEnum);
+        var orderLogEntityId = new OrderEntity.OrderLogEntity.OrderLogEntityId(orderEntity, statusOrderDataEnum, dateTime);
+        var orderLogEntity = new OrderEntity.OrderLogEntity(orderLogEntityId);
         return orderLogEntity;
     }
 }

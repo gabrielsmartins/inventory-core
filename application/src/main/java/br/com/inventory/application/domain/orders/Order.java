@@ -23,7 +23,7 @@ public class Order {
     private LocalDateTime dateTime = LocalDateTime.now();
     @Getter
     @Setter
-    private StatusOrderEnum status;
+    private StatusOrderEnum status = StatusOrderEnum.NEW;
 
     @Getter
     @Setter
