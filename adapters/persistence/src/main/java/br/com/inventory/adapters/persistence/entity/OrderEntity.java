@@ -88,7 +88,7 @@ public class OrderEntity  implements Serializable {
         @EmbeddedId
         private OrderItemEntityId itemEntityId;
 
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
         @JoinColumn(name = "product_id", referencedColumnName = "product_id")
         private ProductEntity product;
 
