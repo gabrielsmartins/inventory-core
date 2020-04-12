@@ -15,5 +15,10 @@ spring:
   main:
     allow-bean-definition-overriding : true
 
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
 
 

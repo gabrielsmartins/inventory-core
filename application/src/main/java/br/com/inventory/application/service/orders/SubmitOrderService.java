@@ -13,7 +13,7 @@ public class SubmitOrderService implements SubmitOrderUseCase {
     private final SaveOrderPort saveOrderPort;
 
     @Override
-    public Order create(Order order) {
+    public Order submit(Order order) {
         order.receive();
         order.send();
         return saveOrderPort.save(order);

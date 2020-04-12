@@ -28,6 +28,15 @@ public enum StatusOrderDataEnum {
         return null;
     }
 
+    public static StatusOrderDataEnum valueOf(StatusOrderEnum status) {
+        for(StatusOrderDataEnum statusOrderDataEnum : StatusOrderDataEnum.values()){
+            if(statusOrderDataEnum.getStatusOrderEnum() == status){
+                return statusOrderDataEnum;
+            }
+        }
+        return null;
+    }
+
     public Integer getCode() {
         return code;
     }

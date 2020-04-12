@@ -8,18 +8,21 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 
-@Table(name = "Product")
+@Table(name = "tbl_product")
 @Entity
 @ToString
-public class ProductEntity {
+public class ProductEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "product_id")
     private Long id;
 
     @Getter
