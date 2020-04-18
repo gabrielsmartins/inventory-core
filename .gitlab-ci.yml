@@ -1,4 +1,4 @@
-compile:
+build-docker:
+  stage: build
   script:
-  - echo "Compiling Project"
-  - echo date
+  - docker build -t inventory-core .
