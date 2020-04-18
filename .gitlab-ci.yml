@@ -1,0 +1,4 @@
+compile:
+  script:
+  - echo "Compiling Project"
+  - echo date
